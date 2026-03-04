@@ -357,14 +357,10 @@
   width: auto;
   height: 520px;     /* tweak 480–620 to taste */
   aspect-ratio: 9 / 16;
+  
 }
-    .work-item.vertical {
-  aspect-ratio: auto;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+    
     
     /* Placeholder shown while image loads or if missing */
     .work-item::before {
@@ -672,11 +668,17 @@
     /* ─────────────────────────────────────────────
        RESPONSIVE — tablet (≤ 960px)
     ───────────────────────────────────────────── */
-    @media (max-width: 960px) {
-      :root {
-        --px: 28px;
-        --gap-sec: 100px;
-      }
+   @media (max-width: 960px) {
+  .work-item.vertical .work-media {
+    height: 520px;
+  }
+}
+
+@media (max-width: 580px) {
+  .work-item.vertical .work-media {
+    height: 460px;
+  }
+}
 
       .nav-links { display: none; }
       .nav-burger { display: flex; }
