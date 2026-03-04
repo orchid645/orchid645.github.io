@@ -383,17 +383,19 @@
   align-items: start;
 }
 
+/* override the default 16:9 container */
 .work-item.vertical {
+  aspect-ratio: 9 / 16;
   background: transparent;
 }
 
+/* iframe fills the vertical container */
 .work-item.vertical .work-media {
-  position: relative;
-  inset: auto;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 9 / 16;
-  border-radius: var(--radius);
+  height: 100%;
+  border: 0;
 }
     
     /* Play icon overlay — visible on hover */
