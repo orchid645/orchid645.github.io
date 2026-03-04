@@ -224,14 +224,15 @@
     .hero-fn,
     .hero-ln { display: block; }
 
-    /* Rotated vertical text — reads bottom-to-top,
+    /* Rotated vertical text — reads top-to-bottom,
        anchored at the bottom-left corner of the name block */
     .hero-vert {
       position: absolute;
       left: 0;
       bottom: 0;
+      right: 100;
       transform-origin: left bottom;
-      transform: rotate(-90deg);
+      transform: rotate(90deg);
       font-family: 'Courier New', Courier, monospace;
       font-size: 11px;
       font-weight: 700;
@@ -711,12 +712,12 @@
           </h1>
 
           <!--
-            Rotated vertical text — reads bottom-to-top, sits left of the name.
+            Rotated vertical text — reads top-to-bottom, sits left of the name.
             Edit "Currently" and "Past" to reflect your actual experience.
           -->
-          <p class="hero-vert" aria-hidden="true">
+          <!-- <p class="hero-vert" aria-hidden="true">
             Currently: Freelance &nbsp;&nbsp;&nbsp; Past: [Studio] // [Studio]
-          </p>
+          </p> -->
         </div>
 
         <!-- Short rule below name -->
