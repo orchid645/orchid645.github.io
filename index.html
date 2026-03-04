@@ -350,6 +350,22 @@
   z-index: 1;
     }
 
+    /* Vertical videos: don't use absolute fill */
+.work-item.vertical .work-media {
+  position: relative;
+  inset: auto;
+  width: auto;
+  height: 520px;     /* tweak 480–620 to taste */
+  aspect-ratio: 9 / 16;
+}
+    .work-item.vertical {
+  aspect-ratio: auto;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+    
     /* Placeholder shown while image loads or if missing */
     .work-item::before {
       content: '';
