@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Put your HTML text here<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -263,6 +263,61 @@
       color: var(--muted);
     }
 
+
+/* ─────────────────────────────────────────────
+   FEATURED WORK — video left, text right
+───────────────────────────────────────────── */
+.work-feature {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr; /* left bigger than right */
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 32px;
+    }
+    
+    /* Keep your 16:9 behavior for the embedded video */
+    .work-feature .work-item {
+      aspect-ratio: 16 / 9;
+    }
+    
+    /* Thought process panel */
+    .work-thought {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 22px;
+      border: 1px solid var(--border);
+    }
+    
+    .work-thought h3 {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    
+    .work-thought p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    
+    .work-thought ul {
+      list-style: disc;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    
+    .work-thought li {
+      margin-bottom: 8px;
+    }
+    
+    /* Responsive: stack on tablet/mobile */
+    @media (max-width: 960px) {
+      .work-feature {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ─────────────────────────────────────────────
        WORK GRID
     ───────────────────────────────────────────── */
@@ -295,19 +350,6 @@
   z-index: 1;
     }
 
-    /* TikTok embed support inside work tiles */
-.work-item .tiktok-embed {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.work-item .tiktok-embed iframe {
-  width: 100% !important;
-  height: 100% !important;
-}
-    
     /* Placeholder shown while image loads or if missing */
     .work-item::before {
       content: '';
@@ -760,10 +802,8 @@
        Replace each src with your thumbnail image path.
        All images live in assets/images/.
   ════════════════════════════════════════════ -->
-
   
-  
-  
+    
   <section id="work" class="sec">
     <div class="w">
       <div class="sec-head">
@@ -772,174 +812,84 @@
 
       <div class="work-grid">
 
-
-    <div class="work-item">
-      <iframe
-      class="work-media"
-      src="https://www.youtube-nocookie.com/embed/-zIih8leaMc?controls=0&rel=0&modestbranding=1"
-      title="YouTube video player"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
-      <div class="work-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 5v14l11-7z" />
-        </svg>
+   <div class="work-feature">
+      <!-- LEFT: video -->
+      <div class="work-item">
+        <iframe
+          class="work-media"
+          src="https://www.youtube-nocookie.com/embed/-zIih8leaMc?controls=1&rel=0&modestbranding=1"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+    
+        <div class="work-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
       </div>
+    
+      <!-- RIGHT: thought process -->
+      <aside class="work-thought">
+        <h3>Thought process</h3>
+        <p>
+          A quick sentence on what this cut is and what the goal was.
+        </p>
+    
+        <p><strong>What I optimized for:</strong></p>
+        <ul>
+          <li>Pacing (hook in first 2–3 seconds)</li>
+          <li>Clarity of story beats</li>
+          <li>Sound + music transitions</li>
+        </ul>
+    
+        <p><strong>Tools:</strong> Premiere Pro, After Effects</p>
+        <p><strong>Next iteration:</strong> What you’d improve if you had more time.</p>
+      </aside>
     </div>
 
-
-
-
-
-
-
-        
+    <div class="work-feature">
+      <!-- LEFT: video -->
+      <div class="work-item">
+        <iframe
+          class="work-media"
+          src="https://www.youtube-nocookie.com/embed/-zIih8leaMc?controls=1&rel=0&modestbranding=1"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
     
-        <div class="work-item">
-          <div class="work-item">
-      <blockquote
-        class="tiktok-embed work-media"
-        cite="https://www.tiktok.com/@mydarlingparamour/video/7423619612933131525"
-        data-video-id="7423619612933131525"
-        style="margin:0; max-width:100%; min-width:0;"
-      >
-        <section></section>
-      </blockquote>
+        <div class="work-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
     
-      <div class="work-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </div>
-      </div>
-      <div class="work-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </div>
+      <!-- RIGHT: thought process -->
+      <aside class="work-thought">
+        <h3>Thought process</h3>
+        <p>
+          A quick sentence on what this cut is and what the goal was.
+        </p>
+    
+        <p><strong>What I optimized for:</strong></p>
+        <ul>
+          <li>Pacing (hook in first 2–3 seconds)</li>
+          <li>Clarity of story beats</li>
+          <li>Sound + music transitions</li>
+        </ul>
+    
+        <p><strong>Tools:</strong> Premiere Pro, After Effects</p>
+        <p><strong>Next iteration:</strong> What you’d improve if you had more time.</p>
+      </aside>
     </div>
 
+    </section>
+  
+  
 
-
-
-
-
-
-
-
-
-
-
-        
-        <div class="work-item">
-      <iframe
-      class="work-media"
-      src="https://www.youtube-nocookie.com/embed/HWUsM6b3S2M?si=hNVNP9E4jnTnL18J&amp;controls=0"
-      title="YouTube video player"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
-      <div class="work-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </div>
-    </div>
-    
-        <div class="work-item">
-      <iframe
-      class="work-media"
-      src="https://www.youtube-nocookie.com/embed/-zIih8leaMc?controls=0&rel=0&modestbranding=1"
-      title="YouTube video player"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
-      <div class="work-play" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </div>
-    </div>
-    
-    
-    
-    
-        
-        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Watch Project One on Vimeo">
-          <img src="assets/images/project-1.jpg"
-               alt="Project One thumbnail" loading="lazy">
-          <div class="work-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            </svg>
-          </div>
-        </a>
-
-        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Watch Project Two on Vimeo">
-          <img src="assets/images/project-2.jpg"
-               alt="Project Two thumbnail" loading="lazy">
-          <div class="work-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </a>
-
-        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Watch Project Three on Vimeo">
-          <img src="assets/images/project-3.jpg"
-               alt="Project Three thumbnail" loading="lazy">
-          <div class="work-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </a>
-
-        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Watch Project Four on Vimeo">
-          <img src="assets/images/project-4.jpg"
-               alt="Project Four thumbnail" loading="lazy">
-          <div class="work-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </a>
-
-        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Watch Project Five on Vimeo">
-          <img src="assets/images/project-5.jpg"
-               alt="Project Five thumbnail" loading="lazy">
-          <div class="work-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </a>
-
-        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Watch Project Six on Vimeo">
-          <img src="assets/images/project-6.jpg"
-               alt="Project Six thumbnail" loading="lazy">
-          <div class="work-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════════════════════════════
        INFO / ABOUT
@@ -1210,7 +1160,7 @@
     <span class="foot-name">Your Name</span>
     <span class="foot-copy">&copy; 2025 &middot; Film &amp; Video Editor</span>
   </footer>
-<script async src="https://www.tiktok.com/embed.js"></script>
+
   <!-- ═══════════════════════════════════════════
        MINIMAL JS — mobile nav toggle only
   ════════════════════════════════════════════ -->
@@ -1224,7 +1174,7 @@
       burger.setAttribute('aria-expanded', open);
       drawer.setAttribute('aria-hidden', !open);
       document.body.style.overflow = open ? 'hidden' : '';
-    }); 
+    });
 
     function closeDrawer() {
       burger.classList.remove('open');
