@@ -1,55 +1,1069 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Your Name — Portfolio</title>
-    <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 860px; margin: 48px auto; padding: 0 16px; line-height: 1.5; }
-      header { margin-bottom: 28px; }
-      h1 { margin: 0 0 8px; }
-      .links a { margin-right: 12px; }
-      .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 16px; margin: 12px 0; }
-      code { background: #f6f6f6; padding: 2px 6px; border-radius: 6px; }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Your Name</h1>
-      <p>Junior Software Engineer • Svelte/TypeScript • Montreal</p>
-      <p class="links">
-        <a href="https://github.com/YOUR_USERNAME">GitHub</a>
-        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/">LinkedIn</a>
-        <a href="mailto:you@email.com">Email</a>
-      </p>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name — Film & Video Editor</title>
+  <meta name="description" content="Film & Video Editor — crafting compelling narratives through the art of editing.">
 
-    <section>
-      <h2>Projects</h2>
+  <!-- Fonts: Satoshi (display) + Inter (body) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-      <div class="card">
-        <h3>Project Name</h3>
-        <p>1–2 lines on what it does, the impact, and your role.</p>
-        <p><b>Tech:</b> TypeScript, SvelteKit, Node.js</p>
-        <p>
-          <a href="https://github.com/YOUR_USERNAME/REPO_NAME">Code</a>
-          • <a href="https://demo-link-if-any.com">Live demo</a>
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & TOKENS
+    ───────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #fafafa;
+      --text:      #0d0d12;
+      --muted:     #585d74;
+      --border:    #e0e1e6;
+      --surface:   #f0f0ee;
+      --font-d:    'Satoshi', system-ui, sans-serif;
+      --font-b:    'Inter', system-ui, sans-serif;
+      --max-w:     1200px;
+      --px:        48px;
+      --gap-sec:   140px;
+      --radius:    6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ─────────────────────────────────────────────
+       LAYOUT WRAPPER
+    ───────────────────────────────────────────── */
+    .w {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--px);
+    }
+
+    /* ─────────────────────────────────────────────
+       NAV
+       mix-blend-mode: difference + white text
+       → appears near-black over the light bg,
+         near-white over dark imagery
+    ───────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      padding: 22px var(--px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+      pointer-events: none; /* let clicks through the empty space */
+    }
+
+    .nav > * { pointer-events: auto; }
+
+    .nav-logo {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff; /* inverts to near-black over light bg via difference blend */
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 0.55; }
+
+    /* Mobile hamburger (hidden on desktop) */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 190;
+      background: var(--bg);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-drawer a {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 36px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      padding-top: 170px;
+      padding-bottom: var(--gap-sec);
+    }
+
+    .hero-eye {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: clamp(80px, 13vw, 180px);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+
+    .hero-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    .hero-meta {
+      text-align: right;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2;
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────────
+       SHARED SECTION SHELL
+    ───────────────────────────────────────────── */
+    .sec {
+      padding: var(--gap-sec) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .sec-head {
+      margin-bottom: 64px;
+    }
+
+    .sec-label {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       WORK GRID
+    ───────────────────────────────────────────── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .work-item {
+      display: block;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    /* Placeholder shown while image loads or if missing */
+    .work-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--surface);
+      z-index: 0;
+    }
+
+    .work-item img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .work-item:hover img { transform: scale(1.04); }
+
+    /* Play icon overlay — visible on hover */
+    .work-play {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .work-item:hover .work-play { opacity: 1; }
+
+    .work-play svg {
+      width: 52px;
+      height: 52px;
+      fill: #fff;
+      filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.4));
+    }
+
+    /* ─────────────────────────────────────────────
+       INFO / ABOUT
+    ───────────────────────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .info-label {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: clamp(36px, 4vw, 52px);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      position: sticky;
+      top: 100px;
+    }
+
+    .info-body p {
+      font-size: 18px;
+      line-height: 1.78;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .info-body p:last-child { margin-bottom: 0; }
+
+    .info-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       EXPERIENCE
+    ───────────────────────────────────────────── */
+    .exp-row {
+      display: grid;
+      grid-template-columns: 170px 1fr auto;
+      gap: 48px;
+      align-items: start;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-row:first-child { border-top: 1px solid var(--border); }
+
+    .exp-date {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      padding-top: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .exp-role {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .exp-badge {
+      background: var(--text);
+      color: var(--bg);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ─────────────────────────────────────────────
+       COMPETENCIES
+    ───────────────────────────────────────────── */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+    }
+
+    .comp-card {
+      background: var(--surface);
+      padding: 40px 36px;
+      border-radius: 3px;
+    }
+
+    .comp-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .comp-title {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .comp-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       STACK
+    ───────────────────────────────────────────── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .stack-card {
+      background: var(--surface);
+      border-radius: 3px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .stack-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--border);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .stack-name {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .stack-cat {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ─────────────────────────────────────────────
+       CONNECT
+    ───────────────────────────────────────────── */
+    .connect-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    .connect-heading {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: clamp(60px, 10vw, 148px);
+      letter-spacing: -0.04em;
+      line-height: 0.88;
+    }
+
+    .connect-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .connect-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.65;
+    }
+
+    .connect-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .connect-link {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .connect-link:hover { opacity: 0.45; }
+
+    .connect-link .arr {
+      font-size: 13px;
+      opacity: 0.4;
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px var(--px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .foot-name {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .foot-copy {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE — tablet (≤ 960px)
+    ───────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      :root {
+        --px: 28px;
+        --gap-sec: 100px;
+      }
+
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .info-label { position: static; }
+
+      .exp-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .comp-grid { grid-template-columns: 1fr; }
+
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .connect-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+      }
+
+      .connect-links { align-items: flex-start; }
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE — mobile (≤ 580px)
+    ───────────────────────────────────────────── */
+    @media (max-width: 580px) {
+      :root {
+        --px: 20px;
+        --gap-sec: 80px;
+      }
+
+      .work-grid { grid-template-columns: 1fr; }
+
+      .hero-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .hero-meta { text-align: left; }
+
+      .stack-grid { grid-template-columns: 1fr; }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+
+    /* Mobile drawer shown on small screens */
+    @media (max-width: 960px) {
+      .nav-drawer { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAV
+  ════════════════════════════════════════════ -->
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="#" class="nav-logo">Your Name</a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#info">Info</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#competencies">Competencies</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="drawer" aria-hidden="true">
+    <a href="#work"         onclick="closeDrawer()">Work</a>
+    <a href="#info"         onclick="closeDrawer()">Info</a>
+    <a href="#experience"   onclick="closeDrawer()">Experience</a>
+    <a href="#competencies" onclick="closeDrawer()">Competencies</a>
+    <a href="#stack"        onclick="closeDrawer()">Stack</a>
+    <a href="#connect"      onclick="closeDrawer()">Connect</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <header class="hero">
+    <div class="w">
+      <p class="hero-eye">Film &amp; Video Editor</p>
+
+      <!--
+        YOUR NAME — replace "Your" / "Name" with your actual first + last name.
+        The line break keeps the large display type stacked like the reference.
+      -->
+      <h1 class="hero-name">
+        Your<br>Name
+      </h1>
+
+      <div class="hero-bar">
+        <p class="hero-desc">
+          Crafting compelling narratives through the art of editing.
+          Available for commercial, documentary, and narrative projects.
         </p>
+        <div class="hero-meta">
+          Based in [City]<br>
+          Available for freelance<br>
+          Est. [Year]
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       WORK
+       Replace each href with your Vimeo video URL.
+       Replace each src with your thumbnail image path.
+       All images live in assets/images/.
+  ════════════════════════════════════════════ -->
+  <section id="work" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Selected Work</span>
       </div>
 
-      <div class="card">
-        <h3>Another Project</h3>
-        <p>Short description.</p>
-        <p><b>Tech:</b> ...</p>
-        <p><a href="#">Code</a></p>
-      </div>
-    </section>
+      <div class="work-grid">
 
-    <section>
-      <h2>About</h2>
-      <p>
-        A short bio: what you build, what you care about, and what you’re looking for.
-      </p>
-    </section>
-  </body>
+        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Watch Project One on Vimeo">
+          <img src="assets/images/project-1.jpg"
+               alt="Project One thumbnail" loading="lazy">
+          <div class="work-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Watch Project Two on Vimeo">
+          <img src="assets/images/project-2.jpg"
+               alt="Project Two thumbnail" loading="lazy">
+          <div class="work-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Watch Project Three on Vimeo">
+          <img src="assets/images/project-3.jpg"
+               alt="Project Three thumbnail" loading="lazy">
+          <div class="work-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Watch Project Four on Vimeo">
+          <img src="assets/images/project-4.jpg"
+               alt="Project Four thumbnail" loading="lazy">
+          <div class="work-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Watch Project Five on Vimeo">
+          <img src="assets/images/project-5.jpg"
+               alt="Project Five thumbnail" loading="lazy">
+          <div class="work-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://vimeo.com/XXXXXXXXX" class="work-item"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Watch Project Six on Vimeo">
+          <img src="assets/images/project-6.jpg"
+               alt="Project Six thumbnail" loading="lazy">
+          <div class="work-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       INFO / ABOUT
+  ════════════════════════════════════════════ -->
+  <section id="info" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Info</span>
+      </div>
+
+      <div class="info-grid">
+        <h2 class="info-label">About<br>Me.</h2>
+
+        <div class="info-body">
+          <p>
+            <strong>Hi, I'm [Your Name]</strong> — a film and video editor
+            with a passion for telling stories that resonate. I specialise in
+            [documentary / narrative / commercial] work, bringing a meticulous
+            eye for pacing, rhythm, and emotional impact.
+          </p>
+          <p>
+            With [X] years of experience working across a range of formats,
+            I've had the privilege of collaborating with talented directors,
+            brands, and content creators to shape raw footage into polished,
+            compelling work.
+          </p>
+          <p>
+            I'm drawn to projects that challenge me creatively — whether that's
+            a character-driven short film, a brand story, or a high-energy music
+            video. If you have a story worth telling, I'd love to help you tell it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       EXPERIENCE
+  ════════════════════════════════════════════ -->
+  <section id="experience" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Experience</span>
+      </div>
+
+      <div>
+
+        <div class="exp-row">
+          <span class="exp-date">2022 – Present</span>
+          <div>
+            <p class="exp-role">Freelance Film &amp; Video Editor</p>
+            <p class="exp-company">Independent</p>
+          </div>
+          <span class="exp-badge">Current</span>
+        </div>
+
+        <div class="exp-row">
+          <span class="exp-date">2020 – 2022</span>
+          <div>
+            <p class="exp-role">Senior Video Editor</p>
+            <p class="exp-company">Studio / Company Name</p>
+          </div>
+          <span class="exp-badge">Full-time</span>
+        </div>
+
+        <div class="exp-row">
+          <span class="exp-date">2018 – 2020</span>
+          <div>
+            <p class="exp-role">Assistant Editor</p>
+            <p class="exp-company">Studio / Company Name</p>
+          </div>
+          <span class="exp-badge">Full-time</span>
+        </div>
+
+        <div class="exp-row">
+          <span class="exp-date">2014 – 2018</span>
+          <div>
+            <p class="exp-role">Film &amp; Media Production</p>
+            <p class="exp-company">University / Film School Name</p>
+          </div>
+          <span class="exp-badge">Education</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       COMPETENCIES
+  ════════════════════════════════════════════ -->
+  <section id="competencies" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Competencies</span>
+      </div>
+
+      <div class="comp-grid">
+
+        <div class="comp-card">
+          <p class="comp-num">01</p>
+          <h3 class="comp-title">Narrative Editing</h3>
+          <p class="comp-desc">
+            Shaping raw footage into stories that flow naturally and hold the
+            viewer's attention — from the first cut to the final frame.
+          </p>
+        </div>
+
+        <div class="comp-card">
+          <p class="comp-num">02</p>
+          <h3 class="comp-title">Colour Grading</h3>
+          <p class="comp-desc">
+            Establishing mood and visual consistency through precise colour work,
+            from on-set LUT management through to final delivery.
+          </p>
+        </div>
+
+        <div class="comp-card">
+          <p class="comp-num">03</p>
+          <h3 class="comp-title">Sound Design</h3>
+          <p class="comp-desc">
+            Mixing dialogue, music, and ambience to build an immersive,
+            emotionally resonant soundscape that supports the picture.
+          </p>
+        </div>
+
+        <div class="comp-card">
+          <p class="comp-num">04</p>
+          <h3 class="comp-title">Motion Graphics</h3>
+          <p class="comp-desc">
+            Creating clean, purposeful titles and graphics that complement
+            the edit rather than compete with it.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STACK
+  ════════════════════════════════════════════ -->
+  <section id="stack" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Stack</span>
+      </div>
+
+      <div class="stack-grid">
+
+        <div class="stack-card">
+          <div class="stack-icon">🎬</div>
+          <div>
+            <p class="stack-name">Premiere Pro</p>
+            <p class="stack-cat">Editing</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">🎨</div>
+          <div>
+            <p class="stack-name">DaVinci Resolve</p>
+            <p class="stack-cat">Colour &amp; Edit</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">✨</div>
+          <div>
+            <p class="stack-name">After Effects</p>
+            <p class="stack-cat">Motion Graphics</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">🔊</div>
+          <div>
+            <p class="stack-name">Audition</p>
+            <p class="stack-cat">Audio Editing</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">📤</div>
+          <div>
+            <p class="stack-name">Frame.io</p>
+            <p class="stack-cat">Review &amp; Delivery</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">🖥️</div>
+          <div>
+            <p class="stack-name">Final Cut Pro</p>
+            <p class="stack-cat">Editing</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">🎵</div>
+          <div>
+            <p class="stack-name">Logic Pro</p>
+            <p class="stack-cat">Audio</p>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-icon">☁️</div>
+          <div>
+            <p class="stack-name">Google Drive</p>
+            <p class="stack-cat">File Management</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONNECT
+  ════════════════════════════════════════════ -->
+  <section id="connect" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Let's Connect</span>
+      </div>
+
+      <div class="connect-inner">
+        <h2 class="connect-heading">
+          Let's<br>Work<br>Together.
+        </h2>
+
+        <div class="connect-row">
+          <p class="connect-desc">
+            Have a project in mind? I'd love to hear about it.
+            Reach out and let's make something great.
+          </p>
+
+          <div class="connect-links">
+            <!-- Replace with your actual email and social handles -->
+            <a href="mailto:your@email.com" class="connect-link">
+              your@email.com <span class="arr">↗</span>
+            </a>
+            <a href="https://vimeo.com/yourprofile"
+               class="connect-link"
+               target="_blank" rel="noopener noreferrer">
+              Vimeo <span class="arr">↗</span>
+            </a>
+            <a href="https://instagram.com/yourhandle"
+               class="connect-link"
+               target="_blank" rel="noopener noreferrer">
+              Instagram <span class="arr">↗</span>
+            </a>
+            <a href="https://linkedin.com/in/yourprofile"
+               class="connect-link"
+               target="_blank" rel="noopener noreferrer">
+              LinkedIn <span class="arr">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer>
+    <span class="foot-name">Your Name</span>
+    <span class="foot-copy">&copy; 2025 &middot; Film &amp; Video Editor</span>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       MINIMAL JS — mobile nav toggle only
+  ════════════════════════════════════════════ -->
+  <script>
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      drawer.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeDrawer() {
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
 </html>
