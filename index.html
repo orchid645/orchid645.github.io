@@ -397,7 +397,11 @@
   height: 100%;
   border: 0;
 }
-    
+ /* IMPORTANT: override the default 16:9 container for vertical items */
+.work-item.vertical {
+  aspect-ratio: 9 / 16;     /* makes the container tall */
+  background: transparent;  /* removes the grey fill */
+}   
     /* Play icon overlay — visible on hover */
     .work-play {
   position: absolute;
