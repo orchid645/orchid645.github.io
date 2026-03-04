@@ -285,6 +285,12 @@
   border-radius: var(--radius);
   overflow: hidden;
     }
+
+    /* A work row designed for vertical video */
+.work-feature.vertical {
+  grid-template-columns: minmax(320px, 520px) 1fr;
+  align-items: start;
+}
     
     /* Thought process panel */
     .work-thought {
@@ -350,21 +356,6 @@
   z-index: 1;
     }
 
-    /* Vertical videos: don't use absolute fill */
-.work-item.vertical .work-media {
-  position: relative;
-  inset: auto;
-  width: auto;
-  height: 520px;     /* tweak 480–620 to taste */
-  aspect-ratio: 9 / 16;
-}
-    .work-item.vertical {
-  aspect-ratio: auto;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
     
     /* Placeholder shown while image loads or if missing */
     .work-item::before {
@@ -386,17 +377,23 @@
 
     .work-item:hover img { transform: scale(1.04); }
 
-.work-item.vertical {
-  aspect-ratio: auto;
-  background: transparent;
-  display: flex;
-  justify-content: center;
+/* Vertical video layout */
+.work-feature.vertical {
+  grid-template-columns: minmax(320px, 520px) 1fr;
+  align-items: start;
 }
 
-.work-item.vertical iframe {
+.work-item.vertical {
+  background: transparent;
+}
+
+.work-item.vertical .work-media {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
   aspect-ratio: 9 / 16;
-  height: 520px;
-  width: auto;
+  border-radius: var(--radius);
 }
     
     /* Play icon overlay — visible on hover */
@@ -867,7 +864,7 @@
       </div>
 
       <!-- VIDEO 2 (bigger) -->
-      <div class="work-feature big">
+      <div class="work-feature vertical">
         <div class="work-item vertical">
           <iframe
             class="work-media"
