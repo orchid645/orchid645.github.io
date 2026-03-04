@@ -291,6 +291,27 @@
   grid-template-columns: minmax(320px, 520px) 1fr;
   align-items: start;
 }
+
+    /* A work row designed for square video */
+.work-feature.square {
+  grid-template-columns: minmax(320px, 520px) 1fr;
+  align-items: start;
+}
+
+/* square container (override default 16:9) */
+.work-item.square {
+  aspect-ratio: 1 / 1;
+  background: transparent; /* optional; keeps it clean like your vertical */
+}
+
+/* iframe fills the square container */
+.work-item.square .work-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
     
     /* Thought process panel */
     .work-thought {
@@ -880,7 +901,7 @@
             allowfullscreen
           ></iframe>
         </div>
-
+        
         <aside class="work-thought">
           <h3>Thought process</h3>
           <p>A quick sentence on what this cut is and what the goal was.</p>
@@ -895,6 +916,33 @@
         </aside>
       </div>
 
+!-- VIDEO 3 (square) -->
+<div class="work-feature square">
+  <div class="work-item square">
+    <iframe
+      class="work-media"
+      src="https://player.vimeo.com/video/1170382462?badge=0&autopause=0&player_id=0&app_id=58479"
+      title="Square video"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <aside class="work-thought">
+          <h3>Thought process</h3>
+          <p>A quick sentence on what this cut is and what the goal was.</p>
+          <p><strong>What I optimized for:</strong></p>
+          <ul>
+            <li>Pacing (hook in first 2–3 seconds)</li>
+            <li>Clarity of story beats</li>
+            <li>Sound + music transitions</li>
+          </ul>
+          <p><strong>Tools:</strong> Premiere Pro, After Effects</p>
+          <p><strong>Next iteration:</strong> What you’d improve if you had more time.</p>
+        </aside>
+</div>
+
+      
     </div>
   </div>
 </section>
