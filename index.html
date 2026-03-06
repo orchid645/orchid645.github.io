@@ -62,6 +62,18 @@
       padding: 0 var(--px);
     }
 
+/* Visible inline links */
+a.inline-link {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+a.inline-link:hover {
+  opacity: 0.6;
+}
     /* ─────────────────────────────────────────────
        NAV
        mix-blend-mode: difference + white text
@@ -264,6 +276,7 @@
     }
 
 
+
 /* ─────────────────────────────────────────────
    FEATURED WORK — video left, text right
 ───────────────────────────────────────────── */
@@ -274,6 +287,21 @@
       align-items: start;
       margin-bottom: 32px;
     }
+    
+  .work-feature.stacked {
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: none;
+  gap: 16px;
+}
+
+.work-feature.stackedsquare {
+  grid-template-columns: 1fr;
+  max-width: 500px;
+  gap: 16px;
+  margin: 0 auto 48px;
+}
+
     
   .work-feature.big {
     grid-template-columns: 2fr 0.9fr;
@@ -771,15 +799,13 @@
        NAV
   ════════════════════════════════════════════ -->
   <nav class="nav" aria-label="Primary navigation">
-    <a href="#" class="nav-logo">Your Name</a>
+    <a href="#" class="nav-logo">Anoja Parames</a>
 
     <!-- Desktop links -->
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#info">Info</a></li>
-      <li><a href="#experience">Experience</a></li>
       <li><a href="#competencies">Competencies</a></li>
-      <li><a href="#stack">Stack</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
 
@@ -793,9 +819,7 @@
   <div class="nav-drawer" id="drawer" aria-hidden="true">
     <a href="#work"         onclick="closeDrawer()">Work</a>
     <a href="#info"         onclick="closeDrawer()">Info</a>
-    <a href="#experience"   onclick="closeDrawer()">Experience</a>
     <a href="#competencies" onclick="closeDrawer()">Competencies</a>
-    <a href="#stack"        onclick="closeDrawer()">Stack</a>
     <a href="#connect"      onclick="closeDrawer()">Connect</a>
   </div>
 
@@ -816,7 +840,7 @@
         <p class="hero-mini">
           I'm a<br>
           Film &amp; Video Editor<br>
-          Based in [City]
+          Based in Montréal
         </p>
 
         <!-- Short rule above name -->
@@ -831,8 +855,8 @@
         -->
         <div class="hero-name-wrap">
           <h1 class="hero-name" aria-label="Your Name">
-            <span class="hero-fn">Your</span>
-            <span class="hero-ln">Name</span>
+            <span class="hero-fn">Anoja</span>
+            <span class="hero-ln">Parames</span>
           </h1>
 
           <!--
@@ -868,7 +892,7 @@
     </div>
 
 <!-- VIDEO 1 (square - tiktok) -->
-<div class="work-feature stacked">
+<div class="work-feature stackedsquare">
   <div class="work-item square">
     <iframe
       class="work-media"
@@ -877,13 +901,17 @@
       allowfullscreen
     ></iframe>
   </div>
+</div>
 
+<div>
+    
+<div class="work-feature stacked">
   <aside class="work-thought">
-    <h3>Short-Form Trailer Edit</h3>
-    <p>Footage from Game Changer | Music: “It’s the Hard Knock Life</p>
+    <h3>Short-Form Trailer || <a class="inline-link" href="https://www.tiktok.com/@mydarlingparamour/video/7423619612933131525" target="_blank">TikTok</a></p></h3>
+    <p>Source Material: Game Changer | Music: It’s the Hard Knock Life
      <p><strong>Project Overview</strong></p>
           <p>This short-form edit repurposes footage from Game Changer, a Dropout comedy game show where contestants compete in unpredictable games without knowing the rules in advance. </p>
-          <p><The objective was to translate the show’s chaotic humour and energy into a high-impact vertical edit suitable for social media marketing. The piece emphasizes comedic timing, rapid pacing, and visual clarity within a short runtime designed for mobile audiences.</p>
+          <p>The objective was to translate the show’s chaotic humour and energy into a high-impact vertical edit suitable for social media marketing. The piece emphasizes comedic timing, rapid pacing, and visual clarity within a short runtime designed for mobile audiences.</p>
     <p><strong>Editing Strategy </strong></p>
           <p>To maintain engagement in a fast-scroll environment, the edit prioritizes tight pacing and rapid comedic payoff. Reaction shots, punchlines, and visual beats were selected to build momentum while preserving narrative clarity.</p>
            <p><strong>Post-Production Workflow </strong></p>
@@ -892,9 +920,9 @@
             </p>
           <p><strong>Impact </strong></p>
           <p>The video generated strong engagement on TikTok, reaching 70.8K+ views.</p>
-        <p>The edit also received direct interaction from Dropout leadership: CEO Sam Reich liked, commented on, and reposted the video, indicating positive reception from the creators of the original show.
-</p>
+        <p>The edit also received direct interaction from Dropout leadership: CEO Sam Reich liked, commented on, and reposted the video, indicating positive reception from the creators of the original show.</p>
   </aside>
+</div>
 </div>
 
 
@@ -909,8 +937,8 @@
     ></iframe>
   </div>
       <aside class="work-thought">
-        <h3>Rhythm-Based Character Montage</h3>
-        <p>Footage from Supernatural | Music: “Another One Bites the Dust” – Queen</p>
+        <h3>Rhythm-Based Character Montage || <a class="inline-link" href="https://www.youtube.com/watch?v=-zIih8leaMc" target="_blank">YouTube</a></p> </h3>
+    <p>Source Material: Supernatural | Music: Another One Bites the Dust
          <p><strong>Project Overview</strong></p>
               <p>This project is a music-driven character narrative montage highlighting the chemistry and action dynamics of the central characters from the fantasy series Supernatural. </p>
             <p>The goal of the edit was to create a fast-paced narrative montage that captures the tone and personality of the show while emphasizing the characters’ teamwork, humour, and action-driven storytelling.</p>
@@ -944,77 +972,21 @@
 
         <div class="info-body">
           <p>
-            <strong>Hi, I'm [Your Name]</strong> — a film and video editor
-            with a passion for telling stories that resonate. I specialise in
-            [documentary / narrative / commercial] work, bringing a meticulous
-            eye for pacing, rhythm, and emotional impact.
-          </p>
-          <p>
-            With [X] years of experience working across a range of formats,
-            I've had the privilege of collaborating with talented directors,
-            brands, and content creators to shape raw footage into polished,
-            compelling work.
-          </p>
-          <p>
-            I'm drawn to projects that challenge me creatively — whether that's
-            a character-driven short film, a brand story, or a high-energy music
-            video. If you have a story worth telling, I'd love to help you tell it.
+            <strong>Hi, I'm Anoja</strong> — a video editor
+            with a passion for telling stories that resonate. 
+            <p>           I enjoy exploring how pacing, music, and shot selection can shape the way a story connects with an audience. My recent work has focused on short-form social edits and narrative montages, where I experiment with rhythm, timing, and storytelling to create engaging and creative content. 
+</p>
+            <p>            I’m excited to bring those storytelling skills into marketing and product videos, creating clear, polished content that communicates ideas effectively. I primarily edit in Adobe Premiere Pro and continue developing my craft through hands-on projects and studying professional editing techniques.</p>
+       <p> I'm drawn to projects that challenge me creatively — whether that's
+            a character-driven short film, a brand's origin story, or an exciting music
+            video. If you have a story worth telling, I'd love to help you tell it.</p>
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       EXPERIENCE
-  ════════════════════════════════════════════ -->
-  <section id="experience" class="sec">
-    <div class="w">
-      <div class="sec-head">
-        <span class="sec-label">Experience</span>
-      </div>
-
-      <div>
-
-        <div class="exp-row">
-          <span class="exp-date">2022 – Present</span>
-          <div>
-            <p class="exp-role">Freelance Film &amp; Video Editor</p>
-            <p class="exp-company">Independent</p>
-          </div>
-          <span class="exp-badge">Current</span>
-        </div>
-
-        <div class="exp-row">
-          <span class="exp-date">2020 – 2022</span>
-          <div>
-            <p class="exp-role">Senior Video Editor</p>
-            <p class="exp-company">Studio / Company Name</p>
-          </div>
-          <span class="exp-badge">Full-time</span>
-        </div>
-
-        <div class="exp-row">
-          <span class="exp-date">2018 – 2020</span>
-          <div>
-            <p class="exp-role">Assistant Editor</p>
-            <p class="exp-company">Studio / Company Name</p>
-          </div>
-          <span class="exp-badge">Full-time</span>
-        </div>
-
-        <div class="exp-row">
-          <span class="exp-date">2014 – 2018</span>
-          <div>
-            <p class="exp-role">Film &amp; Media Production</p>
-            <p class="exp-company">University / Film School Name</p>
-          </div>
-          <span class="exp-badge">Education</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ═══════════════════════════════════════════
        COMPETENCIES
@@ -1067,85 +1039,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       STACK
-  ════════════════════════════════════════════ -->
-  <section id="stack" class="sec">
-    <div class="w">
-      <div class="sec-head">
-        <span class="sec-label">Stack</span>
-      </div>
-
-      <div class="stack-grid">
-
-        <div class="stack-card">
-          <div class="stack-icon">🎬</div>
-          <div>
-            <p class="stack-name">Premiere Pro</p>
-            <p class="stack-cat">Editing</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">🎨</div>
-          <div>
-            <p class="stack-name">DaVinci Resolve</p>
-            <p class="stack-cat">Colour &amp; Edit</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">✨</div>
-          <div>
-            <p class="stack-name">After Effects</p>
-            <p class="stack-cat">Motion Graphics</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">🔊</div>
-          <div>
-            <p class="stack-name">Audition</p>
-            <p class="stack-cat">Audio Editing</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">📤</div>
-          <div>
-            <p class="stack-name">Frame.io</p>
-            <p class="stack-cat">Review &amp; Delivery</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">🖥️</div>
-          <div>
-            <p class="stack-name">Final Cut Pro</p>
-            <p class="stack-cat">Editing</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">🎵</div>
-          <div>
-            <p class="stack-name">Logic Pro</p>
-            <p class="stack-cat">Audio</p>
-          </div>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-icon">☁️</div>
-          <div>
-            <p class="stack-name">Google Drive</p>
-            <p class="stack-cat">File Management</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
+ 
   <!-- ═══════════════════════════════════════════
        CONNECT
   ════════════════════════════════════════════ -->
@@ -1168,20 +1062,15 @@
 
           <div class="connect-links">
             <!-- Replace with your actual email and social handles -->
-            <a href="mailto:your@email.com" class="connect-link">
-              your@email.com <span class="arr">↗</span>
+            <a href="anojaparames@gmail.com" class="connect-link">
+              anojaparames@gmail.com <span class="arr">↗</span>
             </a>
-            <a href="https://vimeo.com/yourprofile"
+            <a href="https://vimeo.com/user255460205"
                class="connect-link"
                target="_blank" rel="noopener noreferrer">
               Vimeo <span class="arr">↗</span>
             </a>
-            <a href="https://instagram.com/yourhandle"
-               class="connect-link"
-               target="_blank" rel="noopener noreferrer">
-              Instagram <span class="arr">↗</span>
-            </a>
-            <a href="https://linkedin.com/in/yourprofile"
+            <a href="https://www.linkedin.com/in/anoja-parames-4ab8435a/"
                class="connect-link"
                target="_blank" rel="noopener noreferrer">
               LinkedIn <span class="arr">↗</span>
@@ -1196,8 +1085,8 @@
        FOOTER
   ════════════════════════════════════════════ -->
   <footer>
-    <span class="foot-name">Your Name</span>
-    <span class="foot-copy">&copy; 2025 &middot; Film &amp; Video Editor</span>
+    <span class="foot-name">Anoja Parames</span>
+    <span class="foot-copy">&copy; 2026 &middot; Film &amp; Video Editor</span>
   </footer>
 
   <!-- ═══════════════════════════════════════════
